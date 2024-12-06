@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/front_gh_pages/static/css/main.d221dc40.css",
+    "main.js": "/front_gh_pages/static/js/main.59f25bc6.js",
+    "static/media/pagina404.png": "/front_gh_pages/static/media/pagina404.4bf0805d8d55a31c5142.png",
+    "index.html": "/front_gh_pages/index.html",
+    "main.d221dc40.css.map": "/front_gh_pages/static/css/main.d221dc40.css.map",
+    "main.59f25bc6.js.map": "/front_gh_pages/static/js/main.59f25bc6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d221dc40.css",
+    "static/js/main.59f25bc6.js"
+  ]
+}
