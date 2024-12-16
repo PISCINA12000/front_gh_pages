@@ -1,60 +1,58 @@
-import { Button, Spinner, Col, Form, InputGroup, Row} from 'react-bootstrap';
-import toast, {Toaster} from 'react-hot-toast';
+import { Button, Spinner, Col, Form, InputGroup, Row} from 'react-bootstrap'
+import toast, {Toaster} from 'react-hot-toast'
 // redux
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { editarFornecedorReducer, inserirFornecedorReducer, buscarFornecedores } from '../../../redux/fornecedorReducer';
-
+import { useState, useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux"
+import { editarFornecedorReducer, inserirFornecedorReducer, buscarFornecedores } from '../../../redux/fornecedorReducer'
 
 export default function FormCadFornecedores(props) {
-    const [fornecedor, setFornecedor] = useState(props.fornecedorSelecionado);
-    const [formValidado, setFormValidado] = useState(false);
+    const [fornecedor, setFornecedor] = useState(props.fornecedorSelecionado)
+    const [formValidado, setFormValidado] = useState(false)
 
-    const despachante = useDispatch();
+    const despachante = useDispatch()
 
     useEffect(()=>{
-        despachante(buscarFornecedores());
-    },[despachante]);
+        despachante(buscarFornecedores())
+    },[despachante])
 
     function manipularSubmissao(evento) {
-        const form = evento.currentTarget;
+        const form = evento.currentTarget
         if (form.checkValidity()) {
 
             if (!props.modoEdicao) {
                 //cadastrar o produto
-                despachante(inserirFornecedorReducer(fornecedor));
+                despachante(inserirFornecedorReducer(fornecedor))
                 toast.success("Fornecedor Inserido!")
             }
             else {
 
-                despachante(editarFornecedorReducer(fornecedor));
-                props.setModoEdicao(false);
+                despachante(editarFornecedorReducer(fornecedor))
+                props.setModoEdicao(false)
                 toast.success("Fornecador Alterado!")
             }
-            props.setModoEdicao(false);
+            props.setModoEdicao(false)
                 props.setFornecedorSelecionado({
-                codigo: 0,
-                nome: "",
-                cidade: "",
-                cnpj: "",
-                cep: "",
-                endereco: "",
-                telefone: ""
-                });
-                props.setExibirTabela(true);
+                    codigo: 0,
+                    nome: "",
+                    cidade: "",
+                    cnpj: "",
+                    cep: "",
+                    endereco: "",
+                    telefone: ""
+                })
+                props.setExibirTabela(true)
         }
         else {
-            setFormValidado(true);
+            setFormValidado(true)
         }
-        evento.preventDefault();
-        evento.stopPropagation();
-
+        evento.preventDefault()
+        evento.stopPropagation()
     }
 
     function manipularMudanca(evento) {
-        const elemento = evento.target.name;
-        const valor = evento.target.value;
-        setFornecedor({ ...fornecedor, [elemento]: valor });
+        const elemento = evento.target.name
+        const valor = evento.target.value
+        setFornecedor({ ...fornecedor, [elemento]: valor })
     }
 
     return (
@@ -174,22 +172,24 @@ export default function FormCadFornecedores(props) {
                     <Button type="submit">{props.modoEdicao ? "Alterar" : "Confirmar"}</Button>
                 </Col>
                 <Col md={{ offset: 1 }}>
-                    <Button onClick={() => {
-                        props.setFornecedorSelecionado({
-                            codigo: 0,
-                            nome: "",
-                            cidade: "",
-                            cnpj: "",
-                            cep: "",
-                            endereco: "",
-                            telefone: ""
-                            });
-                        props.setExibirTabela(true);
-                    }}>Voltar</Button>
+                    <Button
+                        onClick={() => {
+                            props.setFornecedorSelecionado({
+                                codigo: 0,
+                                nome: "",
+                                cidade: "",
+                                cnpj: "",
+                                cep: "",
+                                endereco: "",
+                                telefone: ""
+                            })
+                            props.setExibirTabela(true)
+                        }}>Voltar
+                    </Button>
                 </Col>
             </Row>
             <Toaster position="top-right"/>
         </Form>
         
-    );
+    )
 }
